@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style_prdk.css')}}">
+  <!-- Font Awesome Free -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-black text-white" style="padding: 31px;">
+    <div class="row d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <div class="col-md-4">
+        <h1 class="h4 mb-0 text-center">World <span style="color: #00bbff;">Peas</span></h1>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="col-md-4">
+        <nav class="d-flex justify-content-center" style="font-size: 17px;">
+          <a href="/client" class="text-decoration-none text-link" style="margin-right: 30px;">Home</a>
+          <a href="/produk/" class="text-decoration-none dropdown-toggle text-link" style="margin-right: 30px; color: #00bbff;" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+          <ul class="dropdown-menu dropdown-menu-white" style="width: 50%; padding: 20px 0 20px 31px;">
+            <div class="row">
+              <div class="col-md-3">
+                <h6>SMARTPHONE</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>CASE</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>CHARGER</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>TEMPERED GLASS</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+            </div>
+          </ul>
+          <a href="#" class="text-decoration-none text-link" style="margin-right: 30px;">About Us</a>
+          <a href="#" class="text-decoration-none text-link">E-Catalog</a>
+        </nav>
+      </div>
+      
+      <!-- Search Icon -->
+      <div class="col-md-4 d-flex justify-content-center">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 18px;"></i>
+      </div>
+    </div>
+  </header>
+
+
+
+  <div class="container my-5">
+    <h3 class="text-center" style="margin-bottom: 60px;">CATEGORIES</h3>
+    <div class="row d-flex justify-content-center align-items-center" style="gap: 20px;"> 
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="p-4 bg-black sidebar" style="border-radius: 14px; height: 450px;">
+          <p class="sort-by">Sort by category</p>
+          <ul class="list-unstyled list-category">
+            <li>
+              <input type="checkbox" id="smartphone" data-button-name="Smartphone" onclick="toggleButton(this)" {% if not smartphone_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if smartphone_exists else 'gray' }}" data-name="Smartphone">Smartphone ({{smartphone_exists}})</span>
+            </li>
+            <li class="disabled" >
+              <input type="checkbox" id="case" data-button-name="Case" onclick="toggleButton(this)" {% if not case_exists %}disabled{% endif %}> 
+              <span style="color: {{ 'white' if case_exists else 'gray' }}" data-name="Case">Case ({{case_exists}})</span>
+            </li>
+            <li class="disabled" >
+              <input type="checkbox" id="charger" data-button-name="Charger" onclick="toggleButton(this)" {% if not charger_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if charger_exists else 'gray' }}" data-name="Charger">Charger ({{charger_exists}})</span>
+            </li>
+            <li class="disabled" >
+              <input type="checkbox" id="tempered" data-button-name="Tempered Glass" onclick="toggleButton(this)" {% if not tempered_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if tempered_exists else 'gray' }}" data-name="Tempered Glass">Tempered Glass ({{tempered_exists}})</span>
+            </li>
+          </ul>
+          <p class="sort-by" style="margin-top: 34px;">Sort by phone</p>
+          <ul class="list-unstyled list-category">
+            <li>
+              <input type="checkbox" id="samsung" data-button-name="Samsung" onclick="toggleButton(this)" {% if not samsung_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if samsung_exists else 'gray' }}" data-name="Samsung">Samsung ({{samsung_exists}})</span>
+            </li>
+            </li>
+            <li>
+              <input type="checkbox" id="xiaomi" data-button-name="Xiaomi" onclick="toggleButton(this)" {% if not xiaomi_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if xiaomi_exists else 'gray' }}" data-name="Xiaomi">Xiaomi ({{xiaomi_exists}})</span>
+            </li>
+            <li>
+              <input type="checkbox" id="oppo" data-button-name="Oppo" onclick="toggleButton(this)" {% if not oppo_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if oppo_exists else 'gray' }}" data-name="Oppo">Oppo ({{oppo_exists}})</span>
+            </li>
+            <li>
+              <input type="checkbox" id="vivo" data-button-name="Vivo" onclick="toggleButton(this)" {% if not vivo_exists %}disabled{% endif %}> 
+              <span style="color: {{ 'white' if vivo_exists else 'gray' }}" data-name="Vivo">Vivo ({{vivo_exists}})</span>
+            </li>
+            <li>
+              <input type="checkbox" id="iphone" data-button-name="Iphone" onclick="toggleButton(this)" {% if not iphone_exists %}disabled{% endif %}>
+              <span style="color: {{ 'white' if iphone_exists else 'gray' }}" data-name="Iphone">IPhone ({{iphone_exists}})</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="col-md-8 main-content" style="margin-top: -10px;">
+        <div class="d-flex justify-content-between align-items-center">
+          <div id="button-container">
+            
+          </div>
+          <a href="#" class="text-danger" style="text-decoration: none;" onclick="clearAll()">Clear All</a>
+        </div>
+        <p style="padding-top: 30px; margin-bottom: -34px;">Showing all {{smartphone_exists}} result</p>
+
+  
+        <!-- Products -->
+        <div class="row d-flex align-items-center flex-wrap">
+          {% for row in hasil %}
+            <div class="col-md-3 mt-5">
+              <div class="box-item" data-category="{{row[2]}}">
+                <div class="product-image" onclick="window.location.href='/item/{{row.0}}'" style="height: 150px;">
+                  <img src=""
+                  alt="HP" class="img-fluid">
+                </div>
+                <p class="mt-3 mb-0 type-produk ">{{row[1]}}</p>
+                <p class="harga-produk">Rp. {{row.5}}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+  
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center" style="visibility: hidden;">
+          <div>
+            <div class="bagian-page d-flex justify-content-center" style="margin-top: 40px;">
+              <a type="button" class="btn page-item me-2 active"><b>1</b></button>
+              <a type="button" class="btn page-item pg-2 me-2"><b>2</b></a>
+              <a type="button" class="btn page-item pg-2 me-2"><b>3</b></a>
+              <a type="button" class="btn page-item nxt">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light" style="margin-top: 100px; padding: 60px 0 60px 168px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 text-footer">
+          <h5>CONTACT</h5>
+          <p>
+            Jl. Ahmad Barokah RT 07 / RW 00 Kel. Condong Catur, Kec.
+            Depok,<br>Kab. Sleman, Yogyakarta, Indonesia<br><br>
+            WhatsApp: 0812345678
+          </p>
+        </div>
+        <div class="col-md-2 list-unstyled text-footer">
+          <h5>PRODUCT</h5>
+          <li><a class="text-link-footer" href="#">Smartphone</a></li>
+          <li><a class="text-link-footer" href="#">Case</a></li>
+          <li><a class="text-link-footer" href="#">Charger</a></li>
+          <li><a class="text-link-footer" href="#">Tempered Glass</a></li>
+        </div>
+        <div class="col-md-2 list-unstyled text-footer">
+          <h5>WORD PRESS</h5>
+          <li><a class="text-link-footer" href="#">About Us</a></li>
+          <li><a class="text-link-footer" href="#">Contact Us</a></li>
+          <li><a class="text-link-footer" href="#">FAQ</a></li>
+        </div>
+        <div class="col-md-2 text-footer">
+          <h5>SOCIAL MEDIA</h5>
+          <div class="social-container">
+            <div class="social-icon">
+              <i class="fa-brands fa-square-facebook"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="bg-black text-white" style="height: 42px;">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100%; font-size: 14px;">
+      <p style="margin-top: 12px;">&copy; UAS Kelompok 5</p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{url_for('static', filename='js/produk_page.js')}}"></script>
+</body>
+</html>

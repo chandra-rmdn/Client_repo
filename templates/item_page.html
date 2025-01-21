@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style_item.css')}}">
+  <!-- Font Awesome Free -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-black text-white" style="padding: 31px;">
+    <div class="row d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <div class="col-md-4">
+        <h1 class="h4 mb-0 text-center">World <span style="color: #00bbff;">Peas</span></h1>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="col-md-4">
+        <nav class="d-flex justify-content-center" style="font-size: 17px;">
+          <a href="/client" class="text-decoration-none text-link" style="margin-right: 30px;">Home</a>
+          <a href="/produk/" class="text-decoration-none dropdown-toggle text-link" style="margin-right: 30px; color: #00bbff;" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+          <ul class="dropdown-menu dropdown-menu-white" style="width: 50%; padding: 20px 0 20px 31px;">
+            <div class="row">
+              <div class="col-md-3">
+                <h6>SMARTPHONE</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>CASE</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>CHARGER</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h6>TEMPERED GLASS</h6>
+                <ul class="list-unstyled dropdwn-items" style="font-size: 14px;">
+                  <li><a href="#" class="text-decoration-none">Samsung</a></li>
+                  <li><a href="#" class="text-decoration-none">Xiaomi</a></li>
+                  <li><a href="#" class="text-decoration-none">Oppo</a></li>
+                  <li><a href="#" class="text-decoration-none">Vivo</a></li>
+                  <li><a href="#" class="text-decoration-none">Iphone</a></li>
+                </ul>
+              </div>
+            </div>
+          </ul>
+          <a href="#" class="text-decoration-none text-link" style="margin-right: 30px;">About Us</a>
+          <a href="#" class="text-decoration-none text-link">E-Catalog</a>
+        </nav>
+      </div>
+      
+      <!-- Search Icon -->
+      <div class="col-md-4 d-flex justify-content-center">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 18px;"></i>
+      </div>
+    </div>
+  </header>
+
+
+  <div  class="container my-5">
+    <div class="row align-items-center">
+      <!-- Gambar -->
+      <div class="col-md-4 text-center d-flex justify-content-center">
+        <div class="picture-item d-flex justify-content-center align-items-center">
+            <img src=""
+            alt="HP" class="img-fluid">
+        </div>
+      </div>
+      <!-- Detail Produk -->
+      <div class="col-md-7 link-page-atas">
+        {% for row in hasil %}
+          <nav aria-label="breadcrumb link-page-atas">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item"><a href="">Smartphone</a></li>
+                <li class="breadcrumb-item active" aria-current="page" style="font-size: 13px; font-weight: bold;">{{row.1}}</li>
+              </ol>
+          </nav>    
+          <p class="text-merek" style="margin-top: -8px;">{{row.1}}</p>
+          <div class="container">
+              <div class="circle-warna d-flex align-items-center" style="gap: 4px;">
+                  <div class="circle circle-luar">
+                      <div class="circle circle-dalam" style="background-color: #4f4f4f;"></div>
+                  </div>
+                  <div class="circle circle-luar">
+                      <div class="circle circle-dalam" style="background-color: #ffffff;"></div>
+                  </div>
+                  <div class="circle circle-luar">
+                      <div class="circle circle-dalam" style="background-color: #00bbff;"></div>
+                  </div>
+              </div>
+          </div>
+          <p style="color: black; font-size: 13.5px; font-weight: 600; margin-top: 20px;">SPESIFIKASI :</p>
+          <p style="margin: -6px 0 28px 0;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim
+            maximus purus, sit amet auctor velit congue in. Cras iaculis sodales
+            neque et fermentum. Orci varius natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus. Aenean at tempor arcu.
+            Suspendisse potenti.
+          </p>
+          <h4 class="text-black">Rp. {{row.5}}</h4>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Products -->
+  <div class="container" style="margin-top: 100px;">
+    <hr>
+  </div>
+  <h3 class="text-center" style="margin: 60px 0 40px 0;">RELATE PRODUCT</h3>
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="row" style="flex-wrap: wrap;">
+      {% for row in hasil %}
+        <div class="col-md-3 mt-5">
+          <div class="box-item" data-category="{{row[2]}}">
+            <div class="product-image" onclick="window.location.href='/item/{{row.0}}'" style="height: 150px;">
+              <img src=""
+              alt="HP" class="img-fluid">
+            </div>
+            <p class="mt-3 mb-0 type-produk ">{{row[1]}}</p>
+            <p class="harga-produk">Rp. {{row.5}}</p>
+          </div>
+        </div>
+        <div class="col-md-3 mt-5">
+          <div class="box-item" data-category="{{row[2]}}">
+            <div class="product-image" onclick="window.location.href='/item/{{row.0}}'" style="height: 150px;">
+              <img src=""
+              alt="HP" class="img-fluid">
+            </div>
+            <p class="mt-3 mb-0 type-produk ">{{row[1]}}</p>
+            <p class="harga-produk">Rp. {{row.5}}</p>
+          </div>
+        </div>
+        <div class="col-md-3 mt-5">
+          <div class="box-item" data-category="{{row[2]}}">
+            <div class="product-image" onclick="window.location.href='/item/{{row.0}}'" style="height: 150px;">
+              <img src=""
+              alt="HP" class="img-fluid">
+            </div>
+            <p class="mt-3 mb-0 type-produk ">{{row[1]}}</p>
+            <p class="harga-produk">Rp. {{row.5}}</p>
+          </div>
+        </div>
+        <div class="col-md-3 mt-5">
+          <div class="box-item" data-category="{{row[2]}}">
+            <div class="product-image" onclick="window.location.href='/item/{{row.0}}'" style="height: 150px;">
+              <img src=""
+              alt="HP" class="img-fluid">
+            </div>
+            <p class="mt-3 mb-0 type-produk ">{{row[1]}}</p>
+            <p class="harga-produk">Rp. {{row.5}}</p>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light" style="margin-top: 100px; padding: 60px 0 60px 168px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 text-footer">
+          <h5>CONTACT</h5>
+          <p>
+            Jl. Ahmad Barokah RT 07 / RW 00 Kel. Condong Catur, Kec.
+            Depok,<br>Kab. Sleman, Yogyakarta, Indonesia<br><br>
+            WhatsApp: 0812345678
+          </p>
+        </div>
+        <div class="col-md-2 list-unstyled text-footer">
+          <h5>PRODUCT</h5>
+          <li><a class="text-link-footer" href="#">Smartphone</a></li>
+          <li><a class="text-link-footer" href="#">Case</a></li>
+          <li><a class="text-link-footer" href="#">Charger</a></li>
+          <li><a class="text-link-footer" href="#">Tempered Glass</a></li>
+        </div>
+        <div class="col-md-2 list-unstyled text-footer">
+          <h5>WORD PRESS</h5>
+          <li><a class="text-link-footer" href="#">About Us</a></li>
+          <li><a class="text-link-footer" href="#">Contact Us</a></li>
+          <li><a class="text-link-footer" href="#">FAQ</a></li>
+        </div>
+        <div class="col-md-2 text-footer">
+          <h5>SOCIAL MEDIA</h5>
+          <div class="social-container">
+            <div class="social-icon">
+              <i class="fa-brands fa-square-facebook"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="bg-black text-white" style="height: 42px;">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100%; font-size: 14px;">
+        <p class="text-white" style="margin-top: 12px;">&copy; UAS Kelompok 5</p>
+      </div>
+  </footer>
+
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+</html>
