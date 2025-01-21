@@ -1,36 +1,63 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, get_flashed_messages
-from mysql import connector
+import mysql.connector
+from flask import Flask, render_template, request, redirect, url_for
+from mysql.connector import Error
 
 app = Flask(__name__)
 
-db = connector.connect(
-    host ="localhost",
-    user = "root",
-    password = "",
-    database = "db_barang"
-)
+def get_connection():
+    try: 
+        connection = mysql.connector.connect(
+            host = "tlw44.h.filess.io",
+            database = "DataProduk_mineralsis",
+            port = "3307",
+            user = "DataProduk_mineralsis",
+            password = "66d5729d92ed1cad20b08d72d53e271810fc25b2"
+        )
+        return connection
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+        return None
 
-if db.is_connected():
-    print("MySQL Connected")
+try:
+    connection = get_connection()
+    if connection.is_connected():
+        db_Info = connection.get_server_info()
+        print("Connected to MySQL Server version ", db_Info)
+        cursor = connection.cursor()
+        cursor.execute("select database();")
+        record = cursor.fetchone()
+        print("You're connected to database: ", record)
 
-
+except Error as e:
+    print("Error while connecting to MySQL", e)
 
 def check_item_exists(item_name):
-    cursor = db.cursor()
-    cursor.execute("SELECT COUNT(*) FROM data_barang WHERE type = %s", (item_name,))
-    count = cursor.fetchone()[0]
-    cursor.close()
-    print(f"Checking existence of {item_name}: {count}")
+    connection = get_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute("SELECT COUNT(*) FROM data_barang WHERE type = %s", (item_name,))
+            count = cursor.fetchone()[0]
+        except Error as e:
+            print("Error while deleting data:", e)
+        finally:
+            cursor.close()
+            connection.close()
     return count
 
 def check_unit_exists(unit_name):
-    cursor = db.cursor()
-    cursor.execute("SELECT COUNT(*) FROM data_barang WHERE unit = %s", (unit_name,))
-    count = cursor.fetchone()[0]
-    cursor.close()
-    print(f"Checking existence of unit {unit_name}: {count}")
+    connection = get_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute("SELECT COUNT(*) FROM data_barang WHERE unit = %s", (unit_name,))
+            count = cursor.fetchone()[0]
+        except Error as e:
+            print("Error while deleting data:", e)
+        finally:
+            cursor.close()
+            connection.close()
     return count
-
 
 
 @app.route('/')
@@ -39,24 +66,30 @@ def index():
 
 @app.route('/produk/')
 def page_produk():
-    # Mengambil semua produk untuk ditampilkan
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM data_barang")
-    result = cursor.fetchall()
-    cursor.close()
+    connection = get_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute("SELECT * FROM data_barang")
+            result = cursor.fetchall()
 
-    # Memeriksa keberadaan setiap item
-    samsung_exists = check_item_exists('Samsung')
-    iphone_exists = check_item_exists('iPhone')
-    oppo_exists = check_item_exists('Oppo')
-    vivo_exists = check_item_exists('Vivo')
-    xiaomi_exists = check_item_exists('Xiaomi')
+            # Memeriksa keberadaan setiap item
+            samsung_exists = check_item_exists('Samsung')
+            iphone_exists = check_item_exists('iPhone')
+            oppo_exists = check_item_exists('Oppo')
+            vivo_exists = check_item_exists('Vivo')
+            xiaomi_exists = check_item_exists('Xiaomi')
 
-    # Memeriksa keberadaan setiap unit
-    smartphone_exists = check_unit_exists('Smartphone')
-    case_exists = check_unit_exists('Case')
-    charger_exists = check_unit_exists('Charger')
-    tempered_exists = check_unit_exists('Tempered Glass')
+            # Memeriksa keberadaan setiap unit
+            smartphone_exists = check_unit_exists('Smartphone')
+            case_exists = check_unit_exists('Case')
+            charger_exists = check_unit_exists('Charger')
+            tempered_exists = check_unit_exists('Tempered Glass')
+        except Error as e:
+            print("Error while deleting data:", e)
+        finally:
+            cursor.close()
+            connection.close()
 
     return render_template('produk_page.html', 
                            hasil=result,
@@ -72,11 +105,18 @@ def page_produk():
 
 @app.route('/item/<kode_barang>' , methods=['GET'])
 def page_item(kode_barang):
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM data_barang WHERE kode_barang = %s", (kode_barang,))
-    result = cursor.fetchall()
-    cursor.close()
+    connection = get_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute("SELECT * FROM data_barang WHERE kode_barang = %s", (kode_barang,))
+            result = cursor.fetchall()
+        except Error as e:
+            print("Error while deleting data:", e)
+        finally:
+            cursor.close()
+            connection.close()
     return render_template('item_page.html', hasil=result)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(debug=True)
